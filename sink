@@ -50,7 +50,7 @@ if dir_is_syncable(Dir.pwd)
 
     if remote_head_sha != local_head_sha
       puts "Local repo is out of sync with remote. Fixing that…"
-      `git pull --rebase origin master`
+      pull_rebase = `git pull --rebase origin master`
       g.push('origin')
       puts "Done."
     end
