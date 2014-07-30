@@ -21,10 +21,12 @@ def dir_is_syncable(dir)
 end
 
 if dir_is_syncable(Dir.pwd)
+
+  g = Git.open(Dir.pwd)
   github = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
+  puts github.repo ""
 
   while true do
-    g = Git.open(Dir.pwd)
 
     g.status.each do |file|
       if file.untracked || !file.type.nil?
