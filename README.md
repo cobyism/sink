@@ -2,6 +2,6 @@
 
 Auto-sync for your GitHub repos.
 
-# License
+## License
 
 [MIT](./LICENSE). Go nuts.
