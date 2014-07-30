@@ -25,7 +25,7 @@ and any changes made on the remote repository will be pulled down too.
 ## Todo
 
 - [ ] tests :laughing:
-- [ ] make it way more performant, rather than just sitting there polling (guard?).
+- [ ] make it way more performant, rather than just sitting there polling (use guard?).
 - [ ] rework so the `sink` command checks a config file for a list of folders to watch,
   so you can run it once from wherever instead of having to run a `sink` instance in each folder.
 - [ ] add support for pausing and resuming syncing on a per folder basis.
