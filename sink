@@ -40,20 +40,22 @@ if dir_is_syncable(Dir.pwd)
 
     puts "Searching for latest commit…"
 
-    # Get the current head sha of the default branch for later checks
-    github = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
-    remote_head_sha = github.branch(nwo, "master")[:commit][:sha]
-    local_head_sha = g.log.first.sha
+    begin
+      # Get the current head sha of the default branch for later checks
+      github = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
+      remote_head_sha = github.branch(nwo, "master")[:commit][:sha]
+      local_head_sha = g.log.first.sha
 
-    puts "Latest remote commit is #{remote_head_sha}."
-    puts "Latest local commit is #{local_head_sha}."
+      puts "Latest remote commit is #{remote_head_sha}."
+      puts "Latest local commit is #{local_head_sha}."
 
-    if remote_head_sha != local_head_sha
-      puts "Local repo is out of sync with remote. Fixing that…"
-      pull_rebase = `git pull --rebase origin master`
-      g.push('origin')
-      puts "Done."
-    end
+      if remote_head_sha != local_head_sha
+        puts "Local repo is out of sync with remote. Fixing that…"
+        pull_rebase = `git pull --rebase origin master`
+        g.push('origin')
+        puts "Done."
+      end
+    end while remote_head_sha != local_head_sha
 
     puts "Watching for changes…"
 
