@@ -91,7 +91,7 @@ if dir_is_syncable(Dir.pwd)
       if local_head_sha != remote_head_sha
         puts "Remote has new changes! Syncing…"
         g.pull('origin')
-        remote_head_sha = current_head_sha
+        local_head_sha = remote_head_sha
         puts "Done."
       end
 
