@@ -22,6 +22,7 @@ class Sink
         nwo = Sink.nwo_of_origin(git.remotes)
         puts "Syncing this folder with the #{nwo} repository on GitHub."
       else
+        puts "Not a git repo, sorry!"
       end
     end
 
@@ -34,7 +35,6 @@ class Sink
         end
         origin_exists
       rescue ArgumentError
-        puts "Not a git repo, sorry!"
         false
       end
     end
