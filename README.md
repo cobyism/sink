@@ -11,8 +11,12 @@ Auto-sync for your GitHub repos.
 
 ## Usage
 
+Ideally, you’ll do this:
+
     cd path/to/repo
     sink
+
+So far though, there isn’t a way to install it yet. I’ll probably make this a gem or something.
 
 ## License
 
