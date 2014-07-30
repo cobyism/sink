@@ -42,7 +42,9 @@ class Sink
 
       if remote_head_sha != local_head_sha
         # `git pull --rebase` # No method available for this in the git gem :(
+        puts "Remote changes detected. Syncing…"
         @git.pull('origin')
+        puts "Done."
       end
       sleep 2
     end
