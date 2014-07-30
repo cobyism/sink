@@ -3,6 +3,7 @@ require 'rubygems'
 require 'git'
 require 'octokit'
 require 'dotenv'
+require 'json'
 
 Dotenv.load
 
@@ -22,11 +23,20 @@ def dir_is_syncable(dir)
   end
 end
 
+def nwo_of_origin(remotes)
+  remotes.select { |r| r.name == 'origin' }
+    .first.url
+    .gsub(/https:\/\/github.com\//, '')
+    .gsub(/\.git/, '')
+end
+
 if dir_is_syncable(Dir.pwd)
 
   g = Git.open(Dir.pwd)
+  nwo = nwo_of_origin(g.remotes)
+
   github = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
-  puts github.repo g.remotes['']
+  head_sha = github.branch(nwo, "master")[:commit][:sha]
 
   while true do
 
@@ -55,8 +65,12 @@ if dir_is_syncable(Dir.pwd)
       end
     end
 
-    g.pull('origin')
+    current_head_sha = github.branch(nwo, "master")[:commit][:sha]
+    if head_sha != current_head_sha
+      g.pull('origin')
+      head_sha = current_head_sha
+    end
 
-    sleep 1
+    sleep 2
   end
 end
