@@ -84,11 +84,11 @@ if dir_is_syncable(Dir.pwd)
         g.push('origin')
         puts "Done."
 
-        remote_head_sha = g.log.first.sha
+        local_head_sha = g.log.first.sha
       end
 
       current_head_sha = github.branch(nwo, "master")[:commit][:sha]
-      if remote_head_sha != current_head_sha
+      if local_head_sha != remote_head_sha
         puts "Remote has new changes! Syncing…"
         g.pull('origin')
         remote_head_sha = current_head_sha
