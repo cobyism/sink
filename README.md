@@ -10,7 +10,7 @@ Auto-sync your GitHub repos to local folders.
 
 1. Generate a new [personal access token](https://github.com/settings/applications).
 2. Copy it to your clipboard.
-3. Create a file at `~/.sinkconfig` with the contents `GITHUB_TOKEN=…` (replace everything after the equals sign).
+3. Create a file at `~/.sinkconfig` with the contents `GITHUB_TOKEN=…` (put your token after the equals).
 
 ## Usage
 
