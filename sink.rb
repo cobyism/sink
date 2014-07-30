@@ -46,26 +46,5 @@ while dir_is_syncable(Dir.pwd) do
 
   g.pull('origin')
 
-  # repo.status do |file, status_data|
-    # puts "#{file} has status: #{status_data.inspect}"
-  # end
-
-  # if has_changes(output)
-    # puts "changes are present!"
-
-  #   for entry in output do
-  #     path = get_path(entry)
-  #     message = "auto-sink: #{change_type(entry)} #{path}"
-  #     `git add #{path}`
-  #     `git commit -m "#{message}"`
-  #     `git pull --rebase`
-  #     `git push`
-  #   end
-  #
-  # else
-  #   `git pull`
-
-  # end
-
   sleep 1
 end
