@@ -9,4 +9,5 @@ Gem::Specification.new do |s|
   s.files       = ["lib/sink.rb"]
   s.homepage    = 'http://rubygems.org/cobyism/sink'
   s.license     = 'MIT'
+  s.executables << 'sink'
 end
