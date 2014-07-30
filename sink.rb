@@ -32,6 +32,7 @@ end
 
 if dir_is_syncable(Dir.pwd)
 
+  # Open up this git repo, and save the NWO for future usage.
   g = Git.open(Dir.pwd)
   nwo = nwo_of_origin(g.remotes)
 
