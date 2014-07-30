@@ -37,6 +37,7 @@ class Sink
         @git.add(all: true)
         @git.commit(commit_message)
         @git.push('origin')
+        puts "Latest changes pushed!"
       end
 
       `git pull --rebase` # No method available for this in the git gem :(
