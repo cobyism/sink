@@ -1,11 +1,28 @@
 #!/usr/bin/env ruby
-require 'rubygems'
-require 'git'
-require 'octokit'
-require 'dotenv'
 require 'sink'
 
 Sink.load_config
+
+def dir_is_syncable(dir)
+  begin
+    g = Git.open(dir)
+    origin_exists = false
+    g.remotes.each do |remote|
+      origin_exists = true if !origin_exists && remote.name == 'origin' && !remote.url.match(/github/).nil?
+    end
+    origin_exists
+  rescue ArgumentError
+    puts "Not a git repo, sorry!"
+    false
+  end
+end
+
+def nwo_of_origin(remotes)
+  remotes.select { |r| r.name == 'origin' }
+    .first.url
+    .gsub(/https:\/\/github.com\//, '')
+    .gsub(/\.git/, '')
+end
 
 if dir_is_syncable(Dir.pwd)
   # Open up this git repo, and save the NWO for future usage.
