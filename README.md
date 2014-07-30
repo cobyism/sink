@@ -32,6 +32,10 @@ and any changes made on the remote repository will be pulled down too.
 - [ ] give this a UI somehow.
 - [ ] add support for branching and PRs.
 
+## Contributing
+
+I’d :heart: to receive contributions to this project. It doesn’t matter if it’s just a typo, or if you’re proposing an overhaul of the entire project—I’ll gladly take a look at your changes. Fork at will! :grinning:
+
 ## License
 
 [MIT](./LICENSE). Go nuts.
