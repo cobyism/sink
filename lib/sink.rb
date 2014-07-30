@@ -38,7 +38,7 @@ class Sink
         @git.commit(commit_message)
       end
 
-      pull
+      `git pull --rebase`
       push
 
       sleep 2
