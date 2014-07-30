@@ -2,6 +2,16 @@
 
 Auto-sync your GitHub repos to local folders.
 
+Here’s `sink` syncing two folders both linked to the same git remote.
+
+![gh-sync](https://cloud.githubusercontent.com/assets/296432/3754176/adedbaa2-1818-11e4-91e8-8ddd6b988bd4.gif)
+
+In the above illustration, `sink` is watching both folders via the command line:
+
+![gh-sync](https://cloud.githubusercontent.com/assets/296432/3754334/0f60f7e4-181a-11e4-8bfd-9b727ec79864.png)
+
+It’s up to you to imagine they’re on two different computers.
+
 ## Install
 
 `gem install sink`
