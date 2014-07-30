@@ -11,6 +11,10 @@ class Sink
       Dotenv.load "~/.sinkconfig"
       puts "Done."
     end
+
+    def setup_sync
+
+    end
   end
 
 end
