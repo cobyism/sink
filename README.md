@@ -25,7 +25,7 @@ and any changes made on the remote repository will be pulled down too.
   so you can run it once from wherever instead of having to run a `sink` instance in each folder.
 - [ ] add support for pausing and resuming syncing on a per folder basis.
 - [ ] give this a UI somehow.
-- [ ] give this a UI somehow.
+- [ ] add support for branching and PRs.
 
 ## License
 
