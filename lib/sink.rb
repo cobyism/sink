@@ -21,7 +21,6 @@ class Sink
         # Open up this git repo, and save the NWO for future usage.
         nwo = Sink.nwo_of_origin(git.remotes)
         puts "Syncing this folder with the #{nwo} repository on GitHub."
-
       else
       end
     end
