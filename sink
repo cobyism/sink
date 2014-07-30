@@ -7,8 +7,6 @@ require 'json'
 
 Dotenv.load
 
-nwo = ""
-
 def dir_is_syncable(dir)
   begin
     g = Git.open(dir)
