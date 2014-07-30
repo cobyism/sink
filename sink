@@ -74,7 +74,7 @@ if dir_is_syncable(Dir.pwd)
         status = `git status -sb`
         status = status.split("\n")[1..-1]
 
-        message = "Auto-sync: #{status.count} file#{'s' if status.count > 1} changed.\n#{status.join("\n")}"
+        message = "Auto-sync: #{status.count} file#{'s' if status.count > 1} changed.\n- #{status.join("\n- ")}"
         puts message
         g.commit(message)
 
