@@ -2,6 +2,7 @@
 require 'sink'
 
 Sink.load_config
+Sink.setup_sync
 
 def dir_is_syncable(dir)
   begin
