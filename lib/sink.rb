@@ -1,5 +1,11 @@
 module Sink
 
+  def load_config
+    puts "Loading GitHub access token…"
+    Dotenv.load "~/.sinkconfig"
+    puts "Done."
+  end
+
   def dir_is_syncable(dir)
     begin
       g = Git.open(dir)
