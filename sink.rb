@@ -36,6 +36,7 @@ if dir_is_syncable(Dir.pwd)
   g = Git.open(Dir.pwd)
   nwo = nwo_of_origin(g.remotes)
 
+  # Get the current head sha of the default branch for later checks
   github = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
   head_sha = github.branch(nwo, "master")[:commit][:sha]
 
