@@ -37,8 +37,10 @@ while dir_is_syncable(Dir.pwd) do
           "Auto-sync: #{file.type} - #{file.path}"
         end
 
+      puts "#{message}. Syncing…"
       g.commit message
       g.push('origin')
+      puts "Done."
     end
   end
 
