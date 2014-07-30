@@ -5,8 +5,9 @@ require 'octokit'
 require 'dotenv'
 require 'json'
 
-print "Loading GitHub access token…"
+print "Loading GitHub access token… "
 Dotenv.load "~/code/sink/.env"
+puts "Done."
 
 def dir_is_syncable(dir)
   begin
