@@ -34,7 +34,6 @@ class Sink
 
     while true
       if unstaged_changes?
-        # Gotta catch 'em all!
         @git.add(all: true)
         @git.commit(commit_message)
       end
