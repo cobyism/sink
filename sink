@@ -75,8 +75,10 @@ if dir_is_syncable(Dir.pwd)
 
       current_head_sha = github.branch(nwo, "master")[:commit][:sha]
       if head_sha != current_head_sha
+        puts "Remote has new changes! Syncing…"
         g.pull('origin')
         head_sha = current_head_sha
+        puts "Done."
       end
 
       sleep 2
