@@ -3,7 +3,6 @@ require 'rubygems'
 require 'git'
 require 'octokit'
 require 'dotenv'
-require 'json'
 
 puts "Loading GitHub access token…"
 Dotenv.load "~/.sinkconfig"
