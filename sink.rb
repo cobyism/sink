@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'git'
+require 'octokit'
+require 'dotenv'
+
+Dotenv.load
 
 def dir_is_syncable(dir)
   begin
@@ -15,6 +19,8 @@ def dir_is_syncable(dir)
     false
   end
 end
+
+github = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
 
 while dir_is_syncable(Dir.pwd) do
   g = Git.open(Dir.pwd)
