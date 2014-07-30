@@ -56,7 +56,6 @@ if dir_is_syncable(Dir.pwd)
         puts "Pushing local changes…"
         g.push('origin')
         puts "Done."
-      elsif
       end
 
       if status.split("\n")[1..-1] != []
