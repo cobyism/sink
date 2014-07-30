@@ -1,0 +1,105 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'git'
+require 'octokit'
+require 'dotenv'
+require 'json'
+
+puts "Loading GitHub access token…"
+Dotenv.load "~/code/sink/.env"
+puts "Done."
+
+def dir_is_syncable(dir)
+  begin
+    g = Git.open(dir)
+    origin_exists = false
+    g.remotes.each do |remote|
+      origin_exists = true if !origin_exists && remote.name == 'origin' && !remote.url.match(/github/).nil?
+    end
+    origin_exists
+  rescue ArgumentError
+    puts "Not a git repo, sorry!"
+    false
+  end
+end
+
+def nwo_of_origin(remotes)
+  remotes.select { |r| r.name == 'origin' }
+    .first.url
+    .gsub(/https:\/\/github.com\//, '')
+    .gsub(/\.git/, '')
+end
+
+if dir_is_syncable(Dir.pwd)
+  # Open up this git repo, and save the NWO for future usage.
+  g = Git.open(Dir.pwd)
+  nwo = nwo_of_origin(g.remotes)
+  puts "Syncing this folder with the #{nwo} repository on GitHub."
+
+  begin
+
+    puts "Searching for latest commit…"
+
+    begin
+      # Get the current head sha of the default branch for later checks
+      github = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
+      remote_head_sha = github.branch(nwo, "master")[:commit][:sha]
+      local_head_sha = g.log.first.sha
+
+      puts "Latest remote commit is #{remote_head_sha}."
+      puts "Latest local commit is #{local_head_sha}."
+
+      if remote_head_sha != local_head_sha
+        puts "Local repo is out of sync with remote. Fixing that…"
+        pull_rebase = `git pull --rebase origin master`
+        g.push('origin')
+        puts "Done."
+      end
+    end while remote_head_sha != local_head_sha
+
+    puts "Watching for changes…"
+
+    while true do
+
+      status = `git status -sb`
+
+      if !status[0].match(/ahead/).nil?
+        puts "Pushing local changes…"
+        g.push('origin')
+        puts "Done."
+      end
+
+      if status.split("\n")[1..-1] != []
+        g.add(all: true)
+
+        # Fetch status again after staging everything so we can see renames.
+        status = `git status -sb`
+        status = status.split("\n")[1..-1]
+
+        message = "Auto-sync: #{status.count} file#{'s' if status.count > 1} changed.\n- #{status.join("\n- ")}"
+        puts message
+        g.commit(message)
+
+        puts "Pushing changes to GitHub…"
+        g.push('origin')
+        puts "Done."
+
+        local_head_sha = g.log.first.sha
+      end
+
+      current_head_sha = github.branch(nwo, "master")[:commit][:sha]
+      if local_head_sha != remote_head_sha
+        puts "Remote has new changes! Syncing…"
+        g.pull('origin')
+        local_head_sha = remote_head_sha
+        puts "Done."
+      end
+
+      sleep 2
+    end
+
+  rescue Octokit::NotFound
+    puts "Couldn’t determine NWO to sync. Bailing!"
+  end
+
+end
