@@ -70,7 +70,6 @@ if dir_is_syncable(Dir.pwd)
           puts "#{message}. Syncing…"
           g.commit message
           head_sha = g.log.first.sha
-
           g.push('origin')
           puts "Done."
         end
