@@ -4,19 +4,18 @@ Auto-sync for your GitHub repos.
 
 ## Setup
 
-1. Rename `.env.example` to `.env`.
-2. Open up [your GitHub application settings page](https://github.com/settings/applications).
-3. Generate a new personal access token, and copy it to your clipboard.
-4. Stick your token in `.env`.
+1. `gem install sink`
+2. Generate a new [personal access token](https://github.com/settings/applications), and copy it to your clipboard.
+3. Stick your token into `~/.sinkconfig` in the form of `GITHUB_TOKEN=<paste your token>` (replace everything after the equals sign).
 
 ## Usage
 
-Ideally, you’ll do this:
+```
+cd path/to/repo
+sink
+```
 
-    cd path/to/repo
-    sink
-
-So far though, there isn’t a way to install it yet. I’ll probably make this a gem or something.
+Any changes you make locally while `sink`
 
 ## License
 
