@@ -15,7 +15,8 @@ cd path/to/repo
 sink
 ```
 
-Any changes you make locally while `sink`
+Any changes you make locally while `sink` is running will be committed and pushed,
+and any changes made to the remote will be pulled down too.
 
 ## License
 
