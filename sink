@@ -5,7 +5,7 @@ require 'octokit'
 require 'dotenv'
 require 'json'
 
-print "Loading GitHub access token… "
+puts "Loading GitHub access token…"
 Dotenv.load "~/code/sink/.env"
 puts "Done."
 
