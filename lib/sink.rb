@@ -68,7 +68,7 @@ class Sink
   end
 
   def commit_message
-    # Fetch status again after staging everything so we can commit renames.
+    # Recheck status after staging everything so we can commit renames.
     # i.e. R oldname -> newname instead of D oldname + A newname.
     recheck_status
     count = status_changes.count
