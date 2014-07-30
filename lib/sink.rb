@@ -52,7 +52,11 @@ class Sink
   private
 
   def remote_head_sha
-    puts @github.branch(@nwo, 'master')
+    puts @github.branch(@nwo, 'master').inspect
+  end
+
+  def local_head_sha
+    @git.log.first.sha
   end
 
   def status
