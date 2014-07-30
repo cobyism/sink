@@ -45,7 +45,6 @@ class Sink
         @git.pull('origin')
         puts "Done."
       end
-      # sleep 2
     end
   end
 
