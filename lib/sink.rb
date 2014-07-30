@@ -23,6 +23,7 @@ class Sink
         puts "Syncing this folder with the #{nwo} repository on GitHub."
       else
         puts "Not a git repo, sorry!"
+        exit
       end
     end
 
