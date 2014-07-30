@@ -18,6 +18,10 @@ sink
 Any changes you make locally while `sink` is running will be committed and pushed,
 and any changes made on the remote repository will be pulled down too.
 
+## Todo
+
+- [ ] loltests!
+
 ## License
 
 [MIT](./LICENSE). Go nuts.
