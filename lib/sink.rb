@@ -38,8 +38,8 @@ class Sink
         @git.commit(commit_message)
       end
 
-      `git pull --rebase`
-      push
+      `git pull --rebase` # No method available for this in the git gem :(
+      @git.push
 
       sleep 2
     end
