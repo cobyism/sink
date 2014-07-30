@@ -36,7 +36,7 @@ if dir_is_syncable(Dir.pwd)
   # Open up this git repo, and save the NWO for future usage.
   g = Git.open(Dir.pwd)
   nwo = nwo_of_origin(g.remotes)
-  puts "Syncing this folder with the #{nwo} repository on GitHub…"
+  puts "Syncing this folder with the #{nwo} repository on GitHub."
 
   begin
     # Get the current head sha of the default branch for later checks
