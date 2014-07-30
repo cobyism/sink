@@ -40,6 +40,7 @@ class Sink
         puts "Latest changes pushed!"
       end
 
+      puts "Does #{remote_head_sha} equal #{local_head_sha}?"
       if remote_head_sha != local_head_sha
         # `git pull --rebase` # No method available for this in the git gem :(
         @git.pull('origin')
