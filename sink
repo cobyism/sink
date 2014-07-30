@@ -53,7 +53,11 @@ if dir_is_syncable(Dir.pwd)
 
       status = `git status -sb`
 
-      g.push('origin') if !status[0].match(/ahead/).nil?
+      if !status[0].match(/ahead/).nil?
+        puts "Pushing local changes…"
+        g.push('origin')
+        puts "Done."
+      end
 
       status = status.split("\n")[1..-1]
       if status != []
