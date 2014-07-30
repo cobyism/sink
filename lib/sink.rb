@@ -12,6 +12,10 @@ class Sink
       puts "Done."
     end
 
+    def git
+      @git ||= Git.open(Dir.pwd)
+    end
+
     def setup_sync
       if dir_is_syncable(Dir.pwd)
         # Open up this git repo, and save the NWO for future usage.
