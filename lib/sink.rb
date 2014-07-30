@@ -36,11 +36,10 @@ class Sink
       if unstaged_changes?
         @git.add(all: true)
         @git.commit(commit_message)
+        @git.push('origin')
       end
 
       `git pull --rebase` # No method available for this in the git gem :(
-      @git.push('origin')
-
       sleep 2
     end
   end
