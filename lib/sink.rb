@@ -14,6 +14,11 @@ class Sink
 
     def setup_sync
       if dir_is_syncable(Dir.pwd)
+        # Open up this git repo, and save the NWO for future usage.
+        git = Git.open(Dir.pwd)
+        nwo = Sink.nwo_of_origin(g.remotes)
+        puts "Syncing this folder with the #{nwo} repository on GitHub."
+
       else
       end
     end
