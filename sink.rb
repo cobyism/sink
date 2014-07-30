@@ -1,27 +1,52 @@
 #!/usr/bin/env ruby
 require 'rubygems'
-require 'rugged'
+require 'git'
 
 def dir_is_syncable(dir)
   begin
-    repo = Rugged::Repository.new(dir)
+    g = Git.open(dir)
     origin_exists = false
-    repo.remotes.each do |remote|
-      origin_exists = true if !origin_exists && remote.name == 'origin' && remote.url.match(/github/)
+    g.remotes.each do |remote|
+      origin_exists = true if !origin_exists && remote.name == 'origin' && !remote.url.match(/github/).nil?
     end
     origin_exists
-  rescue Rugged::RepositoryError
+  rescue ArgumentError
     puts "Not a git repo, sorry!"
     false
   end
 end
 
-while dir_is_syncable(Dir.pwd) do
-  repo = Rugged::Repository.new(Dir.pwd)
+if dir_is_syncable(Dir.pwd)
+  g = Git.open(Dir.pwd)
 
-  repo.status do |file, status_data|
-    puts "#{file} has status: #{status_data.inspect}"
+  g.status.each do |file|
+    if file.untracked || !file.type.nil?
+
+      if file.type == "D"
+        g.remove file.path
+      else
+        g.add file.path
+      end
+
+      message =
+        if file.untracked
+          # Untracked files don’t have a type of 'A' before being staged,
+          # and at the point we run `status` we haven’t staged anything yet.
+          "Auto-sync: A - #{file.path}"
+        else
+          "Auto-sync: #{file.type} - #{file.path}"
+        end
+
+      g.commit message
+      g.push('origin')
+    end
   end
+
+  g.pull('origin')
+
+  # repo.status do |file, status_data|
+    # puts "#{file} has status: #{status_data.inspect}"
+  # end
 
   # if has_changes(output)
     # puts "changes are present!"
@@ -40,5 +65,5 @@ while dir_is_syncable(Dir.pwd) do
 
   # end
 
-  sleep 2
+  # sleep 2
 end
