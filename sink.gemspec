@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.executables << 'sink'
 
-  s.add_dependency "git"
+  s.add_dependency "git",     "~> 1.2"
   s.add_dependency "octokit", "~> 3.0"
-  s.add_dependency "dotenv"
+  s.add_dependency "dotenv",  "~> 0.11"
 end
