@@ -59,6 +59,7 @@ if dir_is_syncable(Dir.pwd)
       if status != []
         g.add(all: true)
         g.commit("Auto-sync: #{status.count} file#{'s' if status.count > 1} changed.")
+        g.push('origin')
         head_sha = g.log.first.sha
       end
 
