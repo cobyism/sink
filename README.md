@@ -9,6 +9,11 @@ Auto-sync for your GitHub repos.
 3. Generate a new personal access token, and copy it to your clipboard.
 4. Stick your token in `.env`.
 
+## Usage
+
+    cd path/to/repo
+    sink
+
 ## License
 
 [MIT](./LICENSE). Go nuts.
