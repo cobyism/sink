@@ -40,12 +40,10 @@ class Sink
         puts "Latest changes pushed!"
       end
 
-      # if remote_head_sha != local_head_sha
-        # @git.pull('origin')
-        #`git pull --rebase` # No method available for this in the git gem :(
-      # end
-      remote_head_sha
-      local_head_sha
+      if remote_head_sha != local_head_sha
+        @git.pull('origin')
+        # `git pull --rebase` # No method available for this in the git gem :(
+      end
       sleep 2
     end
   end
@@ -53,11 +51,11 @@ class Sink
   private
 
   def remote_head_sha
-    puts @github.branch(@nwo, 'master').inspect
+    @github.branch(@nwo, 'master')[:commit][:sha]
   end
 
   def local_head_sha
-    puts @git.log.first.sha
+    @git.log.first.sha
   end
 
   def status
