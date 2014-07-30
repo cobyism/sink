@@ -55,6 +55,7 @@ if dir_is_syncable(Dir.pwd)
         g.push('origin')
         puts "Done."
       end
+
     end while remote_head_sha != local_head_sha
 
     puts "Watching for changes…"
