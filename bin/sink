@@ -3,10 +3,10 @@ require 'sink'
 
 Sink.load_config
 Sink.setup_sync
-while true
-  Sink.watch_for_local_changes
-  Sink.watch_for_remote_changes
-end
+# while true
+#   Sink.watch_for_local_changes
+#   Sink.watch_for_remote_changes
+# end
 
 if Sink.dir_is_syncable(Dir.pwd)
 
