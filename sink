@@ -57,6 +57,7 @@ if dir_is_syncable(Dir.pwd)
         puts "Pushing local changes…"
         g.push('origin')
         puts "Done."
+      elsif
       end
 
       if status.split("\n")[1..-1] != []
@@ -74,7 +75,7 @@ if dir_is_syncable(Dir.pwd)
         g.push('origin')
         puts "Done."
 
-        head_sha = g.log.first.sha
+        remote_head_sha = g.log.first.sha
       end
 
       # puts g.status.pretty
@@ -106,10 +107,10 @@ if dir_is_syncable(Dir.pwd)
       # end
 
       current_head_sha = github.branch(nwo, "master")[:commit][:sha]
-      if head_sha != current_head_sha
+      if remote_head_sha != current_head_sha
         puts "Remote has new changes! Syncing…"
         g.pull('origin')
-        head_sha = current_head_sha
+        remote_head_sha = current_head_sha
         puts "Done."
       end
 
