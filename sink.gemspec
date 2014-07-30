@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'sink'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.summary     = "Sink"
   s.description = "Auto-sink folders via GitHub."
   s.authors     = ["Coby Chapple"]
