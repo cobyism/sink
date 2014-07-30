@@ -52,7 +52,7 @@ if dir_is_syncable(Dir.pwd)
     while true do
 
       status = `git status -sb`
-      g.push if status[0].match(/ahead/).count > 0
+      g.push('origin') if status[0].match(/ahead/).count > 0
       status = status.split("\n")[1..-1]
       if status != []
         g.add(all: true)
