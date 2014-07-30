@@ -41,13 +41,18 @@ class Sink
       end
 
       if remote_head_sha != local_head_sha
-        @git.pull('origin') #`git pull --rebase` # No method available for this in the git gem :(
+        @git.pull('origin')
+        #`git pull --rebase` # No method available for this in the git gem :(
       end
       sleep 2
     end
   end
 
   private
+
+  def remote_head_sha
+    puts @github.branch(@nwo, 'master')
+  end
 
   def status
     @status ||= `git status -sb`
