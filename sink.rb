@@ -16,7 +16,7 @@ def dir_is_syncable(dir)
   end
 end
 
-if dir_is_syncable(Dir.pwd)
+while dir_is_syncable(Dir.pwd) do
   g = Git.open(Dir.pwd)
 
   g.status.each do |file|
@@ -65,5 +65,5 @@ if dir_is_syncable(Dir.pwd)
 
   # end
 
-  # sleep 2
+  sleep 1
 end
