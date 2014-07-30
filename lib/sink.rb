@@ -14,6 +14,8 @@ class Sink
 
     def setup_sync
       if dir_is_syncable(Dir.pwd)
+      else
+      end
     end
 
     def dir_is_syncable(dir)
