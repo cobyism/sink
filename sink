@@ -62,6 +62,7 @@ if dir_is_syncable(Dir.pwd)
       if status.split("\n")[1..-1] != []
         g.add(all: true)
 
+        # Fetch status again after staging everything so we can see renames.
         status = `git status -sb`
         status = status.split("\n")[1..-1]
 
