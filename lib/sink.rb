@@ -38,8 +38,9 @@ class Sink
         @git.commit(commit_message)
       end
 
-      # Is the local repo ahead?
-      # Is the remote repo ahead?
+      pull
+      push
+
       sleep 2
     end
   end
