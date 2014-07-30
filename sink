@@ -65,9 +65,11 @@ if dir_is_syncable(Dir.pwd)
         message = "Auto-sync: #{status.count} file#{'s' if status.count > 1} changed."
         puts message
         g.commit(message)
+
         puts "Pushing changes to GitHub…"
         g.push('origin')
         puts "Done."
+
         head_sha = g.log.first.sha
       end
 
