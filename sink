@@ -5,7 +5,7 @@ require 'octokit'
 require 'dotenv'
 require 'json'
 
-Dotenv.load
+Dotenv.load "~/code/sink/.env"
 
 def dir_is_syncable(dir)
   begin
@@ -36,7 +36,11 @@ if dir_is_syncable(Dir.pwd)
 
   # Get the current head sha of the default branch for later checks
   github = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
-  head_sha = github.branch(nwo, "master")[:commit][:sha]
+  begin
+    head_sha = github.branch(nwo, "master")[:commit][:sha]
+  rescue Octokit::NotFound
+    puts ""
+  end
 
   while true do
 
