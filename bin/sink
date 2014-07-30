@@ -5,10 +5,6 @@ Sink.load_config
 Sink.setup_sync
 
 if Sink.dir_is_syncable(Dir.pwd)
-  # Open up this git repo, and save the NWO for future usage.
-  g = Git.open(Dir.pwd)
-  nwo = Sink.nwo_of_origin(g.remotes)
-  puts "Syncing this folder with the #{nwo} repository on GitHub."
 
   begin
 
