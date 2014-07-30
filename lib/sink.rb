@@ -72,9 +72,9 @@ class Sink
     # i.e. R oldname -> newname instead of D oldname + A newname.
     recheck_status
     count = status_changes.count
-    message = "Auto-sync: #{count} file#{'s' if count > 1} changed.\n#{change_list}"
+    message = "#{count} file#{'s' if count > 1} changed.\n#{change_list}"
     puts message
-    message
+    "Auto-sync: #{message}"
   end
 
   def dir_is_syncable?
