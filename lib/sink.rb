@@ -45,6 +45,7 @@ class Sink
         #`git pull --rebase` # No method available for this in the git gem :(
       # end
       remote_head_sha
+      local_head_sha
       sleep 2
     end
   end
@@ -56,7 +57,7 @@ class Sink
   end
 
   def local_head_sha
-    @git.log.first.sha
+    puts @git.log.first.sha
   end
 
   def status
