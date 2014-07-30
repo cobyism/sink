@@ -34,47 +34,47 @@ if dir_is_syncable(Dir.pwd)
   g = Git.open(Dir.pwd)
   nwo = nwo_of_origin(g.remotes)
 
-  # Get the current head sha of the default branch for later checks
-  github = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
   begin
+    # Get the current head sha of the default branch for later checks
+    github = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
     head_sha = github.branch(nwo, "master")[:commit][:sha]
-  rescue Octokit::NotFound
-    puts ""
-  end
 
-  while true do
-
-    g.status.each do |file|
-      if file.untracked || !file.type.nil?
-
-        if file.type == "D"
-          g.remove file.path
-        else
-          g.add file.path
-        end
-
-        message =
-          if file.untracked
-            # Untracked files don’t have a type of 'A' before being staged,
-            # and at the point we run `status` we haven’t staged anything yet.
-            "Auto-sync: A - #{file.path}"
+    while true do
+      g.status.each do |file|
+        if file.untracked || !file.type.nil?
+          if file.type == "D"
+            g.remove file.path
           else
-            "Auto-sync: #{file.type} - #{file.path}"
+            g.add file.path
           end
 
-        puts "#{message}. Syncing…"
-        g.commit message
-        g.push('origin')
-        puts "Done."
+          message =
+            if file.untracked
+              # Untracked files don’t have a type of 'A' before being staged,
+              # and at the point we run `status` we haven’t staged anything yet.
+              "Auto-sync: A - #{file.path}"
+            else
+              "Auto-sync: #{file.type} - #{file.path}"
+            end
+
+          puts "#{message}. Syncing…"
+          g.commit message
+          g.push('origin')
+          puts "Done."
+        end
       end
+
+      current_head_sha = github.branch(nwo, "master")[:commit][:sha]
+      if head_sha != current_head_sha
+        g.pull('origin')
+        head_sha = current_head_sha
+      end
+
+      sleep 2
     end
 
-    current_head_sha = github.branch(nwo, "master")[:commit][:sha]
-    if head_sha != current_head_sha
-      g.pull('origin')
-      head_sha = current_head_sha
-    end
-
-    sleep 2
+  rescue Octokit::NotFound
+    puts "Couldn’t determine NWO to sync. Bailing!"
   end
+
 end
