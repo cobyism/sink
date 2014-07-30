@@ -40,8 +40,9 @@ class Sink
         puts "Latest changes pushed!"
       end
 
-      if
-      `git pull --rebase` # No method available for this in the git gem :(
+      if remote_head_sha != local_head_sha
+        @git.pull('origin') #`git pull --rebase` # No method available for this in the git gem :(
+      end
       sleep 2
     end
   end
