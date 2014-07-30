@@ -47,6 +47,7 @@ if dir_is_syncable(Dir.pwd)
     puts "Latest commit is #{head_sha}."
 
     while true do
+      puts "Waiting for changes…"
       g.status.each do |file|
         if file.untracked || !file.type.nil?
           if file.type == "D"
