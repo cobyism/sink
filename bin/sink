@@ -6,7 +6,7 @@ require 'dotenv'
 require 'json'
 
 puts "Loading GitHub access token…"
-Dotenv.load "~/code/sink/.env"
+Dotenv.load "~/.sinkconfig"
 puts "Done."
 
 def dir_is_syncable(dir)
