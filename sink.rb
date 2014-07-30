@@ -6,6 +6,8 @@ require 'dotenv'
 
 Dotenv.load
 
+nwo = ""
+
 def dir_is_syncable(dir)
   begin
     g = Git.open(dir)
@@ -24,7 +26,7 @@ if dir_is_syncable(Dir.pwd)
 
   g = Git.open(Dir.pwd)
   github = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
-  puts github.repo ""
+  puts github.repo g.remotes['']
 
   while true do
 
