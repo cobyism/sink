@@ -39,9 +39,12 @@ if dir_is_syncable(Dir.pwd)
   puts "Syncing this folder with the #{nwo} repository on GitHub."
 
   begin
+
+    puts "Searching for latest commit…"
     # Get the current head sha of the default branch for later checks
     github = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
     head_sha = github.branch(nwo, "master")[:commit][:sha]
+    puts "Latest commit is #{head_sha}."
 
     while true do
       g.status.each do |file|
