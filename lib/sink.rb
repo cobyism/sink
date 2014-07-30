@@ -60,7 +60,7 @@ class Sink
   end
 
   def unstaged_changes?
-    puts status_changes.inspect
+    recheck_status
     status_changes != []
   end
 
