@@ -40,6 +40,7 @@ class Sink
         puts "Latest changes pushed!"
       end
 
+      if
       `git pull --rebase` # No method available for this in the git gem :(
       sleep 2
     end
