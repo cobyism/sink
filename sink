@@ -46,7 +46,7 @@ if dir_is_syncable(Dir.pwd)
     head_sha = github.branch(nwo, "master")[:commit][:sha]
     puts "Latest commit is #{head_sha}."
 
-    puts "Waiting for changes…"
+    puts "Watching for changes…"
 
     while true do
       g.status.each do |file|
