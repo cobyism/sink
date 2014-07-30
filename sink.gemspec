@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Coby Chapple"]
   s.email       = 'coby@github.com'
   s.files       = ["lib/sink.rb"]
-  s.homepage    = 'http://rubygems.org/cobyism/sink'
+  s.homepage    = 'http://github.com/cobyism/sink'
   s.license     = 'MIT'
   s.executables << 'sink'
 
