@@ -44,8 +44,8 @@ if dir_is_syncable(Dir.pwd)
 
     # Get the current head sha of the default branch for later checks
     github = Octokit::Client.new(:access_token => ENV["GITHUB_TOKEN"])
-    head_sha = github.branch(nwo, "master")[:commit][:sha]
-    puts "Latest commit is #{head_sha}."
+    remote_head_sha = github.branch(nwo, "master")[:commit][:sha]
+    puts "Latest remote commit is #{remote_head_sha}."
 
     puts "Watching for changes…"
 
