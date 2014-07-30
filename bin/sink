@@ -2,7 +2,6 @@
 require 'sink'
 
 sink = Sink.new
-sink.watch
 
 # while true
 #   Sink.watch_for_local_changes
