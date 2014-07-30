@@ -39,7 +39,7 @@ class Sink
       end
 
       `git pull --rebase` # No method available for this in the git gem :(
-      @git.push
+      @git.push('origin')
 
       sleep 2
     end
